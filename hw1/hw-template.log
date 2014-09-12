@@ -1,4 +1,4 @@
-This is pdfTeXk, Version 3.141592-1.40.3 (Web2C 7.5.6) (format=pdflatex 2014.8.20)  11 SEP 2014 00:26
+This is pdfTeXk, Version 3.141592-1.40.3 (Web2C 7.5.6) (format=pdflatex 2014.8.21)  12 SEP 2014 12:57
 entering extended mode
  %&-line parsing enabled.
 **hw-template.tex
@@ -80,25 +80,30 @@ Underfull \hbox (badness 10000) in paragraph at lines 37--40
 
 [1
 
-{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] [2] (./hw-template.aux) ) 
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
+Underfull \hbox (badness 10000) in paragraph at lines 58--60
+
+ []
+
+[2] [3] (./hw-template.aux) ) 
 Here is how much of TeX's memory you used:
- 294 strings out of 256216
- 3050 string characters out of 1917072
+ 297 strings out of 256216
+ 3064 string characters out of 1917072
  53804 words of memory out of 1500000
- 3650 multiletter control sequences out of 10000+200000
+ 3653 multiletter control sequences out of 10000+200000
  7680 words of font info for 27 fonts, out of 1200000 for 2000
  645 hyphenation exceptions out of 8191
  24i,10n,19p,1266b,435s stack positions out of 5000i,500n,6000p,200000b,15000s
-<
-/usr/share/texmf/fonts/type1/bluesky/cm/cmbx12.pfb></usr/share/texmf/fonts/type
-1/bluesky/cm/cmmi12.pfb></usr/share/texmf/fonts/type1/bluesky/cm/cmmi8.pfb></us
-r/share/texmf/fonts/type1/bluesky/cm/cmr12.pfb></usr/share/texmf/fonts/type1/bl
-uesky/cm/cmr8.pfb></usr/share/texmf/fonts/type1/bluesky/cm/cmsl12.pfb></usr/sha
-re/texmf/fonts/type1/bluesky/cm/cmsy10.pfb></usr/share/texmf/fonts/type1/bluesk
-y/cm/cmsy8.pfb></usr/share/texmf/fonts/type1/bluesky/cm/cmti12.pfb>
-Output written on hw-template.pdf (2 pages, 49309 bytes).
+</usr/share/texmf/fonts/type1/bluesky/cm/cmbx12.pf
+b></usr/share/texmf/fonts/type1/bluesky/cm/cmmi12.pfb></usr/share/texmf/fonts/t
+ype1/bluesky/cm/cmmi8.pfb></usr/share/texmf/fonts/type1/bluesky/cm/cmr12.pfb></
+usr/share/texmf/fonts/type1/bluesky/cm/cmr8.pfb></usr/share/texmf/fonts/type1/b
+luesky/cm/cmsl12.pfb></usr/share/texmf/fonts/type1/bluesky/cm/cmsy10.pfb></usr/
+share/texmf/fonts/type1/bluesky/cm/cmsy8.pfb></usr/share/texmf/fonts/type1/blue
+sky/cm/cmti12.pfb>
+Output written on hw-template.pdf (3 pages, 55810 bytes).
 PDF statistics:
- 45 PDF objects out of 1000 (max. 8388607)
+ 48 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 131072)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 

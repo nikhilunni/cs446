@@ -5,7 +5,7 @@
 \textwidth 6.5in
 \topmargin -0.5in
 \textheight 9.0in
-
+\newcommand{\norm}[1]{\left\lVert #1 \right\rVert}
 \begin{document}
 
 \solution{Nikhil Unni}{\today}{Problem 1}{Fall 2014}
@@ -52,8 +52,30 @@
 			example, contributes to false positives when trying out on outside data. The more negative data we have in our training set out of the set of all possible 
 			negative examples, the more we minimize $h'$, and get closer to the target function $f$, which, in turn, increases our accuracy for outside data. 
 	\end{enumerate}
-\item Answer to problem 2
-\item Answer to problem 3
+\item Linear Algebra Review
+	\begin{enumerate}
+		\item[a.]
+			Pick a random point on the hyperplane, $x_1$. The vector between $x_1$ and our point, $x_0$ is given by $x_0-x_1$. Next, we know that $w$ is perpendicular to the hyperplane. Because we want this perpendicular distance (the shortest path from the plane to our point), we know that the distance to our point has to be $\| c\vec{w} \|$, for some scalar c.\\
+			We can find this scalar by taking the projection of the vector from $x_0$ to our arbitrary point $x_1$ onto the perpendicular to the plane, $w$. This becomes:\\
+			$$d=\|proj_{w}(x_0-x_1)\|$$
+			$$=\frac{(x_0-x_1)\cdot w}{\|w\|^2}$$
+			$$=\frac{x_0\cdot w - x_1\cdot w}{\|w\|^2}$$
+			Because the plane is defined as the constraint of all points $x$ such that $w^Tx+\theta=0$, and $x_1$ is a point on the plane, $x_1\cdot w = -\theta$. So now we have:
+			$$\frac{w^T x_0 + \theta}{\|w\|^2}$$
+			But to be strictly correct, the distance should always be positive, giving us:
+			$$\frac{|w^T x_0 + \theta|}{\|w\|^2}$$
+			And that can be evaluated given any plane and point.
+		\item[b.]
+			Similarly, we pick two random points on the planes, $x_1$ on the first plane (the one with $\theta _1$) and $x_2$ on the second. And again, it'll be on some projection onto $w$ since the distance between the planes is some scalar multiplied by $w$. And what we project is the vector $x_1-x_2$. This leaves us with:
+			$$d=\|proj_{w}(x_1-x_2)\|$$
+			$$=\frac{(x_1-x_2)\cdot w}{\|w\|^2}$$
+			$$=\frac{x_1 \cdot w - x_2 \cdot w}{\|w\|^2}$$
+			Because the two planes are constraints, $w^T x + \theta _1 = 0$, and $w^T x + \theta _2 = 0$, and our points are on those respective planes, both the above dot products can be simplified in terms of $\theta _i$. This leaves us with:
+			$$\frac{\theta _2 - \theta _1}{\|w\|^2}$$
+			And again, because the distance should always be positive, we get:
+			$$\frac{|\theta _2 - \theta _1|}{\|w\|^2}$$
+	\end{enumerate}
+\item 
 \end{enumerate}
 
 \end{document}
