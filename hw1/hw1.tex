@@ -77,8 +77,40 @@
 \item Finding a Linear Discriminant Function via Linear Programming
       \begin{enumerate}
         \item[a.1.]
+                Assume the data set, $D$, is linearly separable. Then there must exist a hyperplane, $w^Tx+\theta=0$, such that it separates the data. This means that for each pair $(x_i,y_i) \in D$:\\
+                $w^Tx_i+\theta \geq 0$ if $y_i = 1$, and \\ 
+                $w^Tx_i+\theta < 0$ if $y_i = -1$. \\
+                By this definition, there must be some distance (even if infinitesmely small) between the plane and the closest negative example, but the closest positive example can reside on the plane. Call this distance between the plane and the closest negative example $2\epsilon$. If we adjust $w$ and $\theta$ such that we move the plane $\epsilon$ towards the negative example. Now, for both the closest negative and positive example, (and in extension, ALL examples,) the plane has to be greater than or equal to $\epsilon$ away from the points.\\
+                The distance from our plane to any given point $x_i$ is given by our above formula from question 2:
+                $$D = \frac{y_i(w^Tx_i+\theta)}{\|w\|} \geq \epsilon$$
+                Where the added $y_i$ is an added multiplier to make sure the quantity is nonnegative. Also keeping in mind that the new $w$ and $\theta$ are not necessarily the same as the original $w$ and $\theta$. I just kept the same variable names for ease of reading.\\\\
+                Now, note that we can scale $w$ and $\theta$ by some constant multiplier, and the distance doesn't change. If we have $w' = \alpha w$ and $\theta ' = \alpha \theta$, we see:
+                $$D = \frac{y_i(w'^Tx_i+\theta ')}{\|w'\|} = \frac{\alpha y_i(w^Tx_i+\theta)}{\alpha \|w\|} \geq \epsilon$$
+                With this technique, we can set:
+                $$y_i(w^Tx_i+\theta) = \epsilon \|w\|$$
+                And pick an $\alpha$ such that $\epsilon \|w\| \alpha = 1$, giving us:
+                $$y_i(w'^Tx_i+\theta ') \geq 1$$
+                Thus showing, that given a dataset, $D$, there will always exist a hyperplane such that satisfies condition (3).\\
+                The larger $\delta$, the smaller the margin between the hyperplane and the closest point is, making it less robust for real data beyond the training set.
+                
         \item[a.2.]
+                In this formulation, if $\delta$ is minimized to $0$, the trivial solution of $w = \vec{0}$ and $\delta = 0$ will always be a solution for the LP, since $0 \geq 0$. So clearly, this formulation is not so useful. There must be some constant $c$, (which in the given LP was $1$) for the $c-\delta$ term. But, as we saw in the proof from (a.1) the constant is unimportant, as long as it's greater than $0$. It just affects the scaling of $w$ and $\theta$.
         \item[a.3.]
+                Listing out the constraints:
+                $$y_1(w^Tx_1+\theta)+\delta \geq 1$$
+                $$y_2(w^Tx_2+\theta)+\delta \geq 1$$
+                Then, if we insert the values for all $x_i$ and $y_i$, we get:\\
+                $$1(w_1+w_2+\ldots+w_n+\theta)+\delta \geq 1$$
+                $$-1(-w_1-w_2-\ldots-w_n+\theta)+\delta \geq 1$$
+                Finally we get the constraints:
+                $$w_1+w_2+\ldots+w_n+\theta+\delta \geq 1$$
+                $$w_1+w_2+\ldots+w_n-\theta+\delta \geq 1$$
+                Combining these equations, we find that $\theta = 0$, and that
+                $$w_1+w_2+\ldots+w_n + \delta \geq 1$$
+                If we minimize $\delta$ to $0$, the set of all solutions that solve the LP is given by:
+                $$\theta = 0$$
+                $$w^T\vec{1} \geq 1$$
+                ($\vec{1}$ is the vector $[1,1,\ldots,1]^T$)
         \item[b.1.]
                 To get to the canonical form:
                    $$z(t) = c^Tt$$
