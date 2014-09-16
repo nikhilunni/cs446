@@ -16,7 +16,7 @@
 
 \begin{enumerate}
 \item Learning Disjunctions
-	\begin{enumerate}\parindent-4pt
+      	\begin{enumerate}\parindent-4pt
 		\item[a.]
 			My algorithm for learning the disjunction is actally to use only the negative examples. Because a single "truth" value in the disjunction will make the output positive, we can iterate through all the negative examples and take out all the ``truths.'' For positive examples, a value of $1$ or $0$ has very little meaning if there are other features with $1$ 
 			\begin{algorithm}
@@ -58,24 +58,136 @@
 			Pick a random point on the hyperplane, $x_1$. The vector between $x_1$ and our point, $x_0$ is given by $x_0-x_1$. Next, we know that $w$ is perpendicular to the hyperplane. Because we want this perpendicular distance (the shortest path from the plane to our point), we know that the distance to our point has to be $\| c\vec{w} \|$, for some scalar c.\\
 			We can find this scalar by taking the projection of the vector from $x_0$ to our arbitrary point $x_1$ onto the perpendicular to the plane, $w$. This becomes:\\
 			$$d=\|proj_{w}(x_0-x_1)\|$$
-			$$=\frac{(x_0-x_1)\cdot w}{\|w\|^2}$$
-			$$=\frac{x_0\cdot w - x_1\cdot w}{\|w\|^2}$$
+			$$=\frac{(x_0-x_1)\cdot w}{\|w\|}$$
+			$$=\frac{x_0\cdot w - x_1\cdot w}{\|w\|}$$
 			Because the plane is defined as the constraint of all points $x$ such that $w^Tx+\theta=0$, and $x_1$ is a point on the plane, $x_1\cdot w = -\theta$. So now we have:
-			$$\frac{w^T x_0 + \theta}{\|w\|^2}$$
+			$$\frac{w^T x_0 + \theta}{\|w\|}$$
 			But to be strictly correct, the distance should always be positive, giving us:
-			$$\frac{|w^T x_0 + \theta|}{\|w\|^2}$$
+			$$\frac{|w^T x_0 + \theta|}{\|w\|}$$
 			And that can be evaluated given any plane and point.
 		\item[b.]
 			Similarly, we pick two random points on the planes, $x_1$ on the first plane (the one with $\theta _1$) and $x_2$ on the second. And again, it'll be on some projection onto $w$ since the distance between the planes is some scalar multiplied by $w$. And what we project is the vector $x_1-x_2$. This leaves us with:
 			$$d=\|proj_{w}(x_1-x_2)\|$$
-			$$=\frac{(x_1-x_2)\cdot w}{\|w\|^2}$$
-			$$=\frac{x_1 \cdot w - x_2 \cdot w}{\|w\|^2}$$
+			$$=\frac{(x_1-x_2)\cdot w}{\|w\|}$$
+			$$=\frac{x_1 \cdot w - x_2 \cdot w}{\|w\|}$$
 			Because the two planes are constraints, $w^T x + \theta _1 = 0$, and $w^T x + \theta _2 = 0$, and our points are on those respective planes, both the above dot products can be simplified in terms of $\theta _i$. This leaves us with:
-			$$\frac{\theta _2 - \theta _1}{\|w\|^2}$$
+			$$\frac{\theta _2 - \theta _1}{\|w\|}$$
 			And again, because the distance should always be positive, we get:
-			$$\frac{|\theta _2 - \theta _1|}{\|w\|^2}$$
+			$$\frac{|\theta _2 - \theta _1|}{\|w\|}$$
 	\end{enumerate}
-\item 
+\item Finding a Linear Discriminant Function via Linear Programming
+      \begin{enumerate}
+        \item[a.1.]
+        \item[a.2.]
+        \item[a.3.]
+        \item[b.1.]
+                To get to the canonical form:
+                   $$z(t) = c^Tt$$
+                   $$s.t. At \geq b$$
+                If we write out the equations we get $y_i(w^Tx_i+\theta) \geq 1-\delta$. \\
+                For positive examples, it becomes $w^Tx_i+\theta+\delta \geq 1$ and for negative examples it becomes $-w^Tx_1-\theta+\delta \geq 1$.\\          
+                If I set $t = [w,\theta,\delta]^T$, an example row in $A$ for a positive example would be $[x_{11},x_{12},\ldots,1,1]$ and for a negative example it would be $[-x_{21},-x_{22},\ldots,-1,1]$. Finally, the last row of $A$ should include the constraint that $\delta \geq 0$. And so the last row of $A$ is $[0,0,\ldots,0,1]$. \\
+                With this same scheme, $b = [1,1,1,\ldots,1,0]^T$ where the 0 is from the $\delta \geq 0$ constraint.\\
+                Similarly, for $c$ we only want to minimize $\delta$ so $c=[0,0,\ldots,0,1]^T$. I represent this below in findLinearDiscriminant, in the Code Snippets section at the end of the document.\\
+
+        \item[b.2.]
+                [FINISH ME INCLUDE hw1sample2d.txt DATASET PICTURE]
+                For hw1conjunctions.txt, my returned values were (with some loss of precision so they could fit on the screen):
+                    $$w = [2.910,
+                          -2.049,
+                           0.177,
+                           190.519,
+                           0.139,\\
+                          -3.101,
+                          -2.953,
+                          -193.277,
+                           1.167,
+                          -8.894]^T$$
+                    $$\theta = -90.2115$$
+                    $$\delta = -2.4158e-13 \approx 0$$
+               From this data, it's easy to guess what the target conjunction really is, since $w_4$ has such a huge weight, and $w_8$ has such a huge negative weight, the function must be $x_4 \land \neg x_8$, while the remaining values of $w$ can just be treated as negligible noise. Upon a cursory glance through hwconjunction1.txt, my prediction for the target conjunction looks correct. Geometrically speaking, this could be thought of in terms of the normal vector of a hyperplane. The large components will ``pull'' the normal of the plane in such a way that the hyperplane is almost perpendicular to the axis of that component, creating more separation on that component. The threshold will affect [FINISH ME].
+        \item[b.3.]
+                [FINISH ME].
+        \item[b.4.]
+                 
+                
+      \end{enumerate}
+\item Code Snippets
+      \begin{enumerate}
+      \item [b.1.]
+      \begin{verbatim}
+function [w,theta,delta] = findLinearDiscriminant(data)
+[m, np1] = size(data);
+n = np1-1;
+
+for i=1:m,
+    if data(i,n+1) == -1
+        data(i,:) = horzcat(data(i,1:n)*-1, data(i,n+1));
+    end
+end
+
+A = vertcat( horzcat(data,ones(m,1)) , zeros(1,n+2) ); A(m+1 ,n+2)=1;
+b = ones(m+1,1); b(m+1) = 0;
+c = zeros(n+2,1); c(n+2) = 1;
+
+[t, z] = linprog(c, -A, -b);
+
+w = t(1:n);
+theta = t(n+1);
+delta = t(n+2);
+
+end
+      \end{verbatim}
+      \item [b.2.]
+      \begin{verbatim}
+function plot2dSeparator(w, theta)
+    x = linspace(-2,2,100);
+    y = (-theta-w(1)*x)/w(2);
+    plot(x,y);
+end
+      \end{verbatim}  
+      \item [b.3.]
+      \begin{verbatim}
+function y = computeLabel(x, w, theta)
+    thresh = dot(x,w)+theta;
+    if(thresh >= 0)
+        y=1;
+    else
+        y=-1;
+    end
+end
+      \end{verbatim}
+      \item [b.4.]
+      \begin{verbatim}
+function [theta,delta] = findLinearThreshold(data,w)
+[m, np1] = size(data);
+n = np1-1;
+
+A = zeros(m,2);
+b = zeros(m,1);
+c = [0,1];
+
+for i=1:m,
+    if data(i,n+1) == -1
+        A(i,:) = [-1,1];
+        b(i,:) = 1 + dot(w,data(i,1:n));
+    elseif data(i,n+1) == 1
+        A(i,:) = [1,1];
+        b(i,:) = 1 - dot(w,data(i,1:n));
+    end         
+end
+
+A = vertcat(A, [0,1]);
+b = vertcat(b, 0);
+
+[t, z] = linprog(c, -A, -b);
+
+theta = t(1);
+delta = t(2);
+
+end
+      \end{verbatim} 
+      \end{enumerate}
 \end{enumerate}
 
 \end{document}
