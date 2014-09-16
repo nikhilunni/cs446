@@ -1,4 +1,5 @@
 \input{../cs446.tex}
+\usepackage{graphicx}
 
 \oddsidemargin 0in
 \evensidemargin 0in
@@ -9,10 +10,8 @@
 \begin{document}
 
 \solution{Nikhil Unni}{\today}{Problem 1}{Fall 2014}
-% Fill in the above, for example, as follows:
-% \solution{Joe Smith}{\today}{1}{Fall 2012}
 
-\pagestyle{myheadings}  % Leave this command alone
+\pagestyle{myheadings}
 
 \begin{enumerate}
 \item Learning Disjunctions
@@ -91,7 +90,16 @@
                 Similarly, for $c$ we only want to minimize $\delta$ so $c=[0,0,\ldots,0,1]^T$. I represent this below in findLinearDiscriminant, in the Code Snippets section at the end of the document.\\
 
         \item[b.2.]
-                [FINISH ME INCLUDE hw1sample2d.txt DATASET PICTURE]
+                My hw1sample2d.txt was simply a conjunction of $a \land b$, and was:
+\begin{verbatim}
+1 1 1
+1 0 -1
+0 1 -1
+0 0 -1
+\end{verbatim}
+                The figure obtained by hw1sample2d.txt is:\\
+                \includegraphics[scale=0.5]{learnConjunctions}\\
+                (If you squint you can see the green x's at (0,0),(1,0),(0,1))\\
                 For hw1conjunctions.txt, my returned values were (with some loss of precision so they could fit on the screen):
                     $$w = [2.910,
                           -2.049,
@@ -105,11 +113,11 @@
                           -8.894]^T$$
                     $$\theta = -90.2115$$
                     $$\delta = -2.4158e-13 \approx 0$$
-               From this data, it's easy to guess what the target conjunction really is, since $w_4$ has such a huge weight, and $w_8$ has such a huge negative weight, the function must be $x_4 \land \neg x_8$, while the remaining values of $w$ can just be treated as negligible noise. Upon a cursory glance through hwconjunction1.txt, my prediction for the target conjunction looks correct. Geometrically speaking, this could be thought of in terms of the normal vector of a hyperplane. The large components will ``pull'' the normal of the plane in such a way that the hyperplane is almost perpendicular to the axis of that component, creating more separation on that component. The threshold will affect [FINISH ME].
+               From this data, it's easy to guess what the target conjunction really is, since $w_4$ has such a huge weight, and $w_8$ has such a huge negative weight, the function must be $x_4 \land \neg x_8$, while the remaining values of $w$ can just be treated as negligible noise. Upon a cursory glance through hwconjunction1.txt, my prediction for the target conjunction looks correct. Geometrically speaking, this could be thought of in terms of the normal vector of a hyperplane. The large components will ``pull'' the normal of the plane in such a way that the hyperplane is almost perpendicular to the axis of that component, creating more separation on that component. The threshold, $\theta$, will affect the translation of our hyperplane in such a way that it actually separates the data. And $\delta$ is rightfully $0$.
         \item[b.3.]
-                [FINISH ME].
+                \includegraphics[scale=0.5]{learnBadges}\\
         \item[b.4.]
-                 
+                 \includegraphics[scale=0.5]{learnMultipleHyperplanes}\\
                 
       \end{enumerate}
 \item Code Snippets
