@@ -1,4 +1,4 @@
-pdflatex hw-template.tex
+pdflatex hw1.tex
 ps aux | grep "Adobe" | xargs kill -9
 sleep -s 2
-gnome-open hw-template.pdf
+gnome-open hw1.pdf
