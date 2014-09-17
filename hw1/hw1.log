@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2014.5.25)  16 SEP 2014 18:16
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2014.5.25)  16 SEP 2014 20:41
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -152,39 +152,49 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <6> on input line 20.
 
-Overfull \hbox (54.33463pt too wide) in paragraph at lines 21--33
+Overfull \hbox (54.33463pt too wide) in paragraph at lines 21--34
  [] 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 36--39
+Underfull \hbox (badness 10000) in paragraph at lines 37--40
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 36--39
+Underfull \hbox (badness 10000) in paragraph at lines 37--40
 
  []
 
 [1
 
 {/usr/local/texlive/2014/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
-Underfull \hbox (badness 10000) in paragraph at lines 57--59
+Underfull \hbox (badness 10000) in paragraph at lines 58--60
 
  []
 
 [2] [3]
-Underfull \hbox (badness 10000) in paragraph at lines 85--88
+Underfull \hbox (badness 10000) in paragraph at lines 86--89
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 101--103
+Underfull \hbox (badness 10000) in paragraph at lines 102--104
 
  []
 
 [4]
-Underfull \hbox (badness 10000) in paragraph at lines 117--123
+Underfull \hbox (badness 10000) in paragraph at lines 115--117
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 118--124
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 125--127
 
  []
 
@@ -192,10 +202,10 @@ Underfull \hbox (badness 10000) in paragraph at lines 117--123
 File: learnConjunctions.png Graphic file (type png)
 
 <use learnConjunctions.png>
-Package pdftex.def Info: learnConjunctions.png used on input line 133.
+Package pdftex.def Info: learnConjunctions.png used on input line 134.
 (pdftex.def)             Requested size: 251.43875pt x 197.23639pt.
  [5]
-Overfull \hbox (8.33092pt too wide) detected at line 145
+Overfull \hbox (8.33092pt too wide) detected at line 146
 \OML/cmm/m/it/12 w \OT1/cmr/m/n/12 = [2\OML/cmm/m/it/12 :\OT1/cmr/m/n/12 910\OM
 L/cmm/m/it/12 ; \OMS/cmsy/m/n/12 ^^@\OT1/cmr/m/n/12 2\OML/cmm/m/it/12 :\OT1/cmr
 /m/n/12 049\OML/cmm/m/it/12 ; \OT1/cmr/m/n/12 0\OML/cmm/m/it/12 :\OT1/cmr/m/n/1
@@ -209,58 +219,106 @@ m/it/12 :\OT1/cmr/m/n/12 953\OML/cmm/m/it/12 ; \OMS/cmsy/m/n/12 ^^@\OT1/cmr/m/n
 T1/cmr/m/n/12 8\OML/cmm/m/it/12 :\OT1/cmr/m/n/12 894][]
  []
 
+
+Underfull \hbox (badness 10000) in paragraph at lines 148--150
+
+ []
+
 <learnBadges.png, id=29, 510.90875pt x 391.4625pt>
 File: learnBadges.png Graphic file (type png)
  <use learnBadges.png>
-Package pdftex.def Info: learnBadges.png used on input line 150.
+Package pdftex.def Info: learnBadges.png used on input line 152.
 (pdftex.def)             Requested size: 255.45375pt x 195.73076pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 150--151
+<learnBadges2.png, id=30, 551.05875pt x 433.62pt>
+File: learnBadges2.png Graphic file (type png)
+ <use learnBadges2.png>
+Package pdftex.def Info: learnBadges2.png used on input line 155.
+(pdftex.def)             Requested size: 275.52869pt x 216.80946pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 150--157
 
  []
 
-[6 <./learnConjunctions.png> <./learnBadges.png>]
-<learnMultipleHyperplanes.png, id=33, 516.93124pt x 401.5pt>
+
+Overfull \hbox (8.78738pt too wide) in paragraph at lines 150--157
+\OT1/cmr/m/n/12 For the val-ues af-ter run-ning learn-Badges, I got $\OML/cmm/m
+/it/12 ^^N \OT1/cmr/m/n/12 = 1\OML/cmm/m/it/12 :\OT1/cmr/m/n/12 2612\OML/cmm/m/
+it/12 e \OMS/cmsy/m/n/12 ^^@ \OT1/cmr/m/n/12 09$, accuracyInTrain=$1$,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 150--157
+
+ []
+
+[6 <./learnConjunctions.png>] [7 <./learnBadges.png> <./learnBadges2.png>]
+<learnMultipleHyperplanes.png, id=38, 516.93124pt x 401.5pt>
 File: learnMultipleHyperplanes.png Graphic file (type png)
 
 <use learnMultipleHyperplanes.png>
-Package pdftex.def Info: learnMultipleHyperplanes.png used on input line 152.
+Package pdftex.def Info: learnMultipleHyperplanes.png used on input line 158.
 (pdftex.def)             Requested size: 258.46498pt x 200.7495pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 152--153
+Underfull \hbox (badness 10000) in paragraph at lines 157--162
 
  []
 
 
-Overfull \hbox (11.5446pt too wide) in paragraph at lines 180--180
+Underfull \hbox (badness 10000) in paragraph at lines 157--162
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 157--162
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 157--162
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 157--162
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 157--162
+
+ []
+
+[8 <./learnMultipleHyperplanes.png>]
+Overfull \hbox (11.5446pt too wide) in paragraph at lines 189--189
  []\OT1/cmtt/m/n/12 A = vertcat( horzcat(data,ones(m,1)) , zeros(1,n+2) ); A(m+
 1 ,n+2)=1;[] 
  []
 
-[7 <./learnMultipleHyperplanes.png>] [8] (./hw1.aux) ) 
+[9] [10] (./hw1.aux) ) 
 Here is how much of TeX's memory you used:
- 1569 strings out of 493117
- 22340 string characters out of 6135433
+ 1574 strings out of 493117
+ 22439 string characters out of 6135433
  85996 words of memory out of 5000000
- 5034 multiletter control sequences out of 15000+600000
+ 5038 multiletter control sequences out of 15000+600000
  7849 words of font info for 28 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 37i,10n,23p,1258b,435s stack positions out of 5000i,500n,10000p,200000b,80000s
-</usr/local/texlive/2014/
-texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2014/t
-exmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/local/texlive/2014/te
-xmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/texlive/2014/texm
-f-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2014/texmf-
-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2014/texmf-dis
-t/fonts/type1/public/amsfonts/cm/cmsl12.pfb></usr/local/texlive/2014/texmf-dist
-/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2014/texmf-dist/
-fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2014/texmf-dist/fo
-nts/type1/public/amsfonts/cm/cmti12.pfb></usr/local/texlive/2014/texmf-dist/fon
-ts/type1/public/amsfonts/cm/cmtt12.pfb>
-Output written on hw1.pdf (8 pages, 138560 bytes).
+ 37i,10n,23p,1266b,435s stack positions out of 5000i,500n,10000p,200000b,80000s
+</usr/local/texlive/2014/texmf-dist/fonts/type1/public/am
+sfonts/cm/cmbx12.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/ams
+fonts/cm/cmmi12.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsf
+onts/cm/cmmi8.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfon
+ts/cm/cmr12.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts
+/cm/cmr8.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm
+/cmsl12.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/
+cmsy10.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/c
+msy8.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmt
+i12.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt
+12.pfb>
+Output written on hw1.pdf (10 pages, 148348 bytes).
 PDF statistics:
- 74 PDF objects out of 1000 (max. 8388607)
- 50 compressed objects within 1 object stream
+ 81 PDF objects out of 1000 (max. 8388607)
+ 54 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 16 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 21 words of extra memory for PDF output out of 10000 (max. 10000000)
 

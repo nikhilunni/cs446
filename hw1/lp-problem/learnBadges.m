@@ -6,7 +6,7 @@
 
 %% define the characters of interest (alphabet) and character positions of interest (positions)
 alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ_.- ';
-positions = 1:10;
+positions = 1:2:10;
 
 %% compute features and save them to file
 writeBadgeFeatures(alphabet,positions,'badges.train','features.train');
