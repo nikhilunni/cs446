@@ -17,7 +17,7 @@
 \item Learning Disjunctions
       	\begin{enumerate}\parindent-4pt
 		\item[a.]
-			My algorithm for learning the disjunction is actually to use only the negative examples. Because a single "truth" value in the disjunction will make the output positive, we can iterate through all the negative examples and take out all the ``truths.'' For positive examples, a value of $1$ or $0$ has very little meaning if there are other features with $1$ 
+			My algorithm for learning the disjunction is actually to use only the negative examples. Because a single ``truth'' value in the disjunction will make the output positive, we can iterate through all the negative examples and take out all the ``truths.'' For positive examples, a value of $1$ or $0$ has very little meaning if there are other features with $1$ 
 			\begin{algorithm}
 				1. Get $m$ training examples of $n$ long Boolean vectors\\
 				2. Initialize a \textit{set} of all $2n$ possible members of the target function : $x_1, \neg x_1, x_2, \neg x_2, \ldots$ \\
