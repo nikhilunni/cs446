@@ -1,5 +1,12 @@
 from math import log
 
+class Node:
+    def __init__(self,attribute):
+        self.value = attribute
+        self.left = None
+        self.right = None
+
+
 data = [("Y","S","S","A",True),
         ("Y","S","S","C",True),
         ("Y","S","D","A",True),
@@ -26,7 +33,8 @@ def ID3_heuristic(data):
     numNeg = numTotal - numPos
     entropy = -1.0*numPos/numTotal*log(1.0*numPos/numTotal,2) - 1.0*numNeg/numTotal*log(1.0*numNeg/numTotal,2)
     for i in range(numFeatures):
-        
+        classes = set(c[i] for c in data)
         
 
 ID3_heuristic(data)
+
