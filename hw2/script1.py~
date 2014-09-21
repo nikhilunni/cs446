@@ -1,0 +1,26 @@
+class Node(object):
+    def __init__(self):
+        self.left = None
+        self.right = None
+        self.data = None
+
+
+data = [("Y","S","S","A",True),
+        ("Y","S","S","C",True),
+        ("Y","S","D","A",True),
+        ("Y","S","D","C",True),
+        ("Y","L","S","A",True),
+        ("Y","L","S","C",False),
+        ("Y","L","D","A",False),
+        ("Y","L","D","C",False),
+        ("P","S","S","A",True),
+        ("P","S","S","C",False),
+        ("P","S","D","A",False),
+        ("P","S","D","C",False),
+        ("P","L","S","A",True),
+        ("P","L","S","C",False),
+        ("P","L","D","A",False),
+        ("P","L","D","C",False)]
+
+def ID3_heuristic(data):    
+    def 
