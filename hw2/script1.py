@@ -16,6 +16,8 @@ class Node:
 
 def ID3_heuristic(data,root):    
     if(len(data) <= 1):
+        root.left = Node(data[0][0])
+        root.right = Node(data[0][0])
         return
     numFeatures = len(data[0])-1
     numTotal = len(data)
