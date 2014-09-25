@@ -5,7 +5,7 @@ import java.io.FileReader;
 
 import weka.classifiers.Evaluation;
 import weka.core.Instances;
-import cs446.homework2.SGD;
+import cs446.weka.classifiers.trees.Id3;
 
 public class SGDTester {
 
@@ -22,26 +22,25 @@ public class SGDTester {
 	// The last attribute is the class label
 	data.setClassIndex(data.numAttributes() - 1);
 
-	// Train on 80% of the data and test on 20%
-	Instances train = data.trainCV(5,0);
-	Instances test = data.testCV(5, 0);
 
-	// Create a new SGD classifier. This is the modified one where you can
-	// set the depth of the tree.
-	SGD classifier = new SGD();
+	double totalCorrect = 0;
+	double totalPossible = 0;
+	for(int i = 0; i < 5; i++) {
+	    // Train on 80% of the data and test on 20%
+	    Instances train = data.trainCV(5,i);
+	    Instances test = data.testCV(5, i);
+	    SGD classifier = new SGD();
+	    classifier.buildClassifier(train);
 
+	    Evaluation evaluation = new Evaluation(test);
+	    evaluation.evaluateModel(classifier, test);
+	    System.out.println(evaluation.toSummaryString());
+	    totalCorrect += evaluation.correct();
+	    totalPossible += evaluation.correct() + evaluation.incorrect();
+	}
 
-	// Train
-	classifier.buildClassifier(train);
-
-	// Print the classfier
-	System.out.println(classifier);
-	System.out.println();
-
-	// Evaluate on the test set
-	Evaluation evaluation = new Evaluation(test);
-	evaluation.evaluateModel(classifier, test);
-	System.out.println(evaluation.toSummaryString());
+	System.out.println("Average percentage across five-fold cross validation:");
+	System.out.println(totalCorrect / totalPossible * 100 + " %");
 
     }
 }

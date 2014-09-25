@@ -7,7 +7,7 @@ JAVAC = javac
 .java.class:
 	$(JAVAC) $(JFLAGS) $*.java
 
-CLASSES = src/FeatureGenerator.java src/Id3.java src/WekaTester.java src/SGD.java src/SGDTester.java
+CLASSES = src/FeatureGenerator.java src/Id3.java src/WekaTester.java src/SGD.java src/BalloonTester.java src/SGDTester.java src/StumpTester.java
 
 all: directories classes
 

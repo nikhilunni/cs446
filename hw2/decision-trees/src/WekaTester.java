@@ -22,29 +22,29 @@ public class WekaTester {
 	// The last attribute is the class label
 	data.setClassIndex(data.numAttributes() - 1);
 
-	// Train on 80% of the data and test on 20%
-	Instances train = data.trainCV(5,0);
-	Instances test = data.testCV(5, 0);
 
-	// Create a new ID3 classifier. This is the modified one where you can
-	// set the depth of the tree.
-	Id3 classifier = new Id3();
+	double totalCorrect = 0;
+	double totalPossible = 0;
+	for(int i = 0; i < 5; i++) {
+	    // Train on 80% of the data and test on 20%
+	    Instances train = data.trainCV(5,i);
+	    Instances test = data.testCV(5, i);
+	    Id3 classifier = new Id3();
+	    //	    classifier.setMaxDepth(4);
+	    classifier.buildClassifier(train);
 
-	// An example depth. If this value is -1, then the tree is grown to full
-	// depth.
-	classifier.setMaxDepth(4);
+            System.out.println(classifier);
+            System.out.println();
 
-	// Train
-	classifier.buildClassifier(train);
+	    Evaluation evaluation = new Evaluation(test);
+	    evaluation.evaluateModel(classifier, test);
+	    System.out.println(evaluation.toSummaryString());
+	    totalCorrect += evaluation.correct();
+	    totalPossible += evaluation.correct() + evaluation.incorrect();
+	}
 
-	// Print the classfier
-	System.out.println(classifier);
-	System.out.println();
-
-	// Evaluate on the test set
-	Evaluation evaluation = new Evaluation(test);
-	evaluation.evaluateModel(classifier, test);
-	System.out.println(evaluation.toSummaryString());
+	System.out.println("Average percentage across five-fold cross validation:");
+	System.out.println(totalCorrect / totalPossible * 100 + " %");
 
     }
 }

@@ -15,5 +15,7 @@ java -cp lib/weka.jar:bin cs446.homework2.FeatureGenerator ../data/badges.test.b
 # Using the features generated above, train a decision tree classifier
 # to predict the data. This is just an example code and in the
 # homework, you should perform five fold cross-validation. 
-#java -cp lib/weka.jar:bin cs446.homework2.WekaTester ./../badges.train.arff
-java -cp lib/weka.jar:bin cs446.homework2.SGDTester ./../badges.train.arff
+#java -cp lib/weka.jar:bin cs446.homework2.SGDTester ./../badges.train.arff
+#java -cp lib/weka.jar:bin cs446.homework2.BalloonTester ./../balloons.train.arff
+java -cp lib/weka.jar:bin cs446.homework2.StumpTester ./../badges.train.arff
+

@@ -108,22 +108,22 @@ def secondHeuristic(data,root):
     secondHeuristic(newData0,root.left)
     secondHeuristic(newData1,root.right)    
 
-data = [("Y","S","S","A",True),
-        ("Y","S","S","C",True),
-        ("Y","S","D","A",True),
-        ("Y","S","D","C",True),
-        ("Y","L","S","A",True),
-        ("Y","L","S","C",False),
-        ("Y","L","D","A",False),
-        ("Y","L","D","C",False),
-        ("P","S","S","A",True),
-        ("P","S","S","C",False),
-        ("P","S","D","A",False),
-        ("P","S","D","C",False),
-        ("P","L","S","A",True),
-        ("P","L","S","C",False),
-        ("P","L","D","A",False),
-        ("P","L","D","C",False)]    
+data = [("Yellow","Small","Stretch","Adult",True),
+        ("Yellow","Small","Stretch","Child",True),
+        ("Yellow","Small","Dip","Adult",True),
+        ("Yellow","Small","Dip","Child",True),
+        ("Yellow","Large","Stretch","Adult",True),
+        ("Yellow","Large","Stretch","Child",False),
+        ("Yellow","Large","Dip","Adult",False),
+        ("Yellow","Large","Dip","Child",False),
+        ("Purple","Small","Stretch","Adult",True),
+        ("Purple","Small","Stretch","Child",False),
+        ("Purple","Small","Dip","Adult",False),
+        ("Purple","Small","Dip","Child",False),
+        ("Purple","Large","Stretch","Adult",True),
+        ("Purple","Large","Stretch","Child",False),
+        ("Purple","Large","Dip","Adult",False),
+        ("Purple","Large","Dip","Child",False)]    
     
 root = Node("ROOT")
 
