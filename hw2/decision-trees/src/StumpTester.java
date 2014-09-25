@@ -9,18 +9,20 @@ import weka.core.Attribute;
 import weka.core.Instance;
 import weka.core.Instances;
 import cs446.weka.classifiers.trees.Id3;
+import weka.core.converters.ArffSaver;
 import java.util.*;
 
 public class StumpTester {
 
     private static HashMap<String,Attribute> attrLookup = new HashMap<String,Attribute>();
 
-    private static Instance makeInstance(double[] features, Instances instances) {
-	Instance instance = new Instance(100);
+    private static Instance makeInstance(double[] features, double value, Instances instances) {
+	Instance instance = new Instance(101);
 	instance.setDataset(instances);
 	for(int i = 0; i < 100; i++) {
 	    instance.setValue(attrLookup.get("stump"+i), (int)(features[i])+"");
 	}
+	instance.setClassValue((value == 0.0 ? "-1" : "1"));
 	return instance;
     }
 
@@ -50,24 +52,32 @@ public class StumpTester {
 	FastVector zeroOne = new FastVector(2);
 	zeroOne.addElement("1");
 	zeroOne.addElement("0");
+	FastVector labels = new FastVector(2);
+	labels.addElement("-1");
+	labels.addElement("1");
+
 	FastVector attributes = new FastVector();
 	for(int i = 0; i < 100; i++) {
 	    Attribute newAttr = new Attribute("stump"+i, zeroOne);
 	    attrLookup.put("stump"+i,newAttr);
 	    attributes.addElement(newAttr);
-	}	   
+	}
+	
+	Attribute classLabel = new Attribute("Class", labels);
+	attrLookup.put("Class", classLabel);
+	attributes.addElement(classLabel);
 
 
 	Instances richFeatures = new Instances("Decision Stumps", attributes, 0);
+	richFeatures.setClass(classLabel);
 	for(int i = 0; i < data.numInstances(); i++) {
 	    Instance cur = data.instance(i);
 	    double[] predictions = new double[100];
 	    for(int j = 0; j < 100; j++)
 		predictions[j] = stumps[j].classifyInstance(cur);
-	    richFeatures.add(makeInstance(predictions, richFeatures));
+	    richFeatures.add(makeInstance(predictions, cur.classValue(),richFeatures));
 	}
 
-	richFeatures.setClassIndex(richFeatures.numAttributes() - 1);
 
 
 	double totalCorrect = 0;
@@ -88,6 +98,9 @@ public class StumpTester {
 	}
 	System.out.println("Average percentage across five-fold cross validation:");
 	System.out.println(totalCorrect / totalPossible * 100 + " %");
+
+	//	if(totalCorrect >= 1995)
+	    
 
     }
 }

@@ -67,6 +67,7 @@ public class SGD extends Classifier{
 		Instance curInstance = arg0.instance(i);
 		ArrayList<Double> x_i = toArrayList(curInstance.toDoubleArray());
 		x_i.remove(numFeatures);
+
 		double y_i = (curInstance.classValue() == 0.0 ? -1 : 1);
 		double w_error = w_0 + dot(w, x_i) - y_i;
 		//w = addVectors(w, multScalar(normalize(x_i), -1.0*alpha*w_error));

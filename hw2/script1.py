@@ -127,6 +127,6 @@ data = [("Yellow","Small","Stretch","Adult",True),
     
 root = Node("ROOT")
 
-secondHeuristic(data, root)
+ID3_heuristic(data, root)
 root.printChildren()
 
