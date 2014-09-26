@@ -99,7 +99,24 @@ public class StumpTester {
 	System.out.println("Average percentage across five-fold cross validation:");
 	System.out.println(totalCorrect / totalPossible * 100 + " %");
 
-	//	if(totalCorrect >= 1995)
+	
+
+	SGD classifier = new SGD();
+	Instances testOriginal = FeatureGenerator.readData("./../data/badges.test.blind");
+	FastVector testAttributes = new FastVector();
+
+	Instances testData = new Instances("Test Data", attributes, 0);
+	testData.setClass(classLabel);
+	for(int i=0; i < testOriginal.numInstances(); i++) {
+	    Instance cur = testOriginal.instance(i);
+	    double[] predictions = new double[100];
+	    for(int j=0; j<100; j++)
+		predictions[j] = stumps[j].classifyInstance(cur);
+	    testData.add(makeInstance(predictions, cur.classValue(),testData));
+	}
+
+	classifier.buildClassifier(richFeatures);
+	FeatureGenerator.writePred2E("./../data/2.e.pred", classifier, testData);
 	    
 
     }

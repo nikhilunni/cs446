@@ -5,7 +5,11 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Scanner;
+import java.io.PrintWriter;
+import java.io.FileWriter;
+import java.io.File;
 import java.util.Set;
+import weka.classifiers.*;
 
 import weka.core.Attribute;
 import weka.core.FastVector;
@@ -125,6 +129,43 @@ public class FeatureGenerator {
 
 	return instances;
 
+    }
+
+    public static void writePred(String fname, Classifier c) {
+	try {
+	    FileWriter f = new FileWriter(new File(fname));
+	    PrintWriter outF = new PrintWriter(f);
+	    Scanner scanner = new Scanner(new File("./../data/badges.test.blind"));
+	    Instances testData = readData("./../data/badges.test.blind");
+	    for(int i = 0; i < testData.numInstances(); i++) {
+		Instance curInstance = testData.instance(i);
+		String curLine = scanner.nextLine().substring(1);
+		String out = (c.classifyInstance(curInstance) == 0 ? "-1" : "1");
+		outF.println(out+curLine);
+	    }
+	    outF.close();
+	} catch(Exception e) {
+	    System.err.println(e);
+	}	
+    }
+
+    public static void writePred2E(String fname, Classifier c, Instances testData) {
+	try {
+	    FileWriter f = new FileWriter(new File(fname));
+	    PrintWriter outF = new PrintWriter(f);
+	    Scanner scanner = new Scanner(new File("./../data/badges.test.blind"));
+	    
+	    for(int i = 0; i < testData.numInstances(); i++) {
+		Instance curInstance = testData.instance(i);
+		String curLine = scanner.nextLine().substring(1);
+		String out = (c.classifyInstance(curInstance) == 0 ? "-1" : "1");
+		outF.println(out+curLine);
+	    }
+	    outF.close();
+	    
+	} catch(Exception e) {
+	    System.err.println(e);
+	}
     }
 
     private static Instance create_empty_instance(Instances instances){

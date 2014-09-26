@@ -14,8 +14,10 @@ public class SGD extends Classifier{
     private double w_0;
 
     private ArrayList<Double> addVectors(ArrayList<Double> a, ArrayList<Double> b) throws Exception{ //out = a + b
-	if(a.size() != b.size())
+	if(a.size() != b.size()) {
 	    throw new Exception("Vector size mismatch!");
+	}
+
 	ArrayList<Double> out = new ArrayList<Double>(a.size());
 	for(int i = 0; i < a.size(); i++)
 	    out.add(a.get(i) + b.get(i));
@@ -28,8 +30,10 @@ public class SGD extends Classifier{
 	return out;
     }
     private double dot(ArrayList<Double> a, ArrayList<Double> b) throws Exception {
-	if(a.size() != b.size())
+	if(a.size() != b.size()) {
 	    throw new Exception("Vector size mismatch!");
+	}
+	
 	double out = 0;
 	for(int i = 0; i < a.size(); i++) {	    
 	    out += a.get(i) * b.get(i);

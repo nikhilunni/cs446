@@ -14,7 +14,7 @@ class Node:
         if(self.right != None):
             self.right.printChildren(space + '\t')
 
-def ID3_heuristic(data,root):    
+def ID3_heuristic(data,root, length = -1):
     if(len(data) <= 1):
         root.left = Node(data[0][0])
         root.right = Node(data[0][0])
@@ -49,7 +49,7 @@ def ID3_heuristic(data,root):
                 expected_entropy -= 0
         if(expected_entropy < minValue[1]):
             minValue = (i,expected_entropy)
-    
+    print(minValue[1])    
     split_feature = minValue[0]
     classes = list(set(c[split_feature] for c in data))
 
@@ -83,7 +83,7 @@ def secondHeuristic(data,root):
     minValue = (0,2)
     for i in range(numFeatures):
         classes = list(set(c[i] for c in data))
-        expected_entropy = 0
+        expected_entropy = 10
         for cur_class in classes:
             totalInClass = [classItem for classItem in data if classItem[i] is cur_class]
             totalNumInClass = len(totalInClass)
@@ -91,7 +91,7 @@ def secondHeuristic(data,root):
             totalNeg = totalNumInClass - totalPos
             percentPos = 1.0*totalPos/totalNumInClass
             percentNeg = 1.0*totalNeg/totalNumInClass
-            expected_entropy = min(percentPos,percentNeg,expected_entropy)
+            expected_entropy = min(percentPos,percentNeg, expected_entropy)
 
         if(expected_entropy < minValue[1]):
             minValue = (i,expected_entropy)
@@ -125,8 +125,14 @@ data = [("Yellow","Small","Stretch","Adult",True),
         ("Purple","Large","Dip","Adult",False),
         ("Purple","Large","Dip","Child",False)]    
     
-root = Node("ROOT")
+root1 = Node("ROOT")
+secondHeuristic(data[0:12], root1)
+print("ID3 Heuristic : ")
+root1.printChildren()
+print("\n\n\n")
 
-ID3_heuristic(data, root)
-root.printChildren()
+#root2 = Node("ROOT")
+#ID3_heuristic(data, root2)
+#print("MajorityError Heuristic : ")
+#root2.printChildren()
 

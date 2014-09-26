@@ -42,5 +42,10 @@ public class SGDTester {
 	System.out.println("Average percentage across five-fold cross validation:");
 	System.out.println(totalCorrect / totalPossible * 100 + " %");
 
+	SGD classifier = new SGD();
+	classifier.buildClassifier(data);
+
+	FeatureGenerator.writePred("./../data/2.b.pred", classifier);
+
     }
 }

@@ -22,8 +22,7 @@ public class BalloonTester {
 	// The last attribute is the class label
 	data.setClassIndex(data.numAttributes() - 1);
 	Id3 classifier = new Id3();
-	classifier.setMaxDepth(-1);
-
+	classifier.setMaxDepth(1);
 	// Train
 	classifier.buildClassifier(data);
 
