@@ -49,7 +49,6 @@ def ID3_heuristic(data,root, length = -1):
                 expected_entropy -= 0
         if(expected_entropy < minValue[1]):
             minValue = (i,expected_entropy)
-    print(minValue[1])    
     split_feature = minValue[0]
     classes = list(set(c[split_feature] for c in data))
 
@@ -124,15 +123,15 @@ data = [("Yellow","Small","Stretch","Adult",True),
         ("Purple","Large","Stretch","Child",False),
         ("Purple","Large","Dip","Adult",False),
         ("Purple","Large","Dip","Child",False)]    
-    
+
+print("Second Heuristic") 
 root1 = Node("ROOT")
-secondHeuristic(data[0:12], root1)
-print("ID3 Heuristic : ")
+secondHeuristic(data, root1)
 root1.printChildren()
 print("\n\n\n")
 
-#root2 = Node("ROOT")
-#ID3_heuristic(data, root2)
-#print("MajorityError Heuristic : ")
-#root2.printChildren()
+print("ID3 Heuristic")
+root2 = Node("ROOT")
+ID3_heuristic(data, root2)
+root2.printChildren()
 

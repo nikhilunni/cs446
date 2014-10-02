@@ -1,0 +1,8 @@
+function [w,theta] = perceptron(x,y,eta)
+    [m,n] = size(x);
+    for i = 1:n
+        w = w + eta*y[i]*
+    end
+    
+end
+

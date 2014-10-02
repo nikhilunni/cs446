@@ -72,7 +72,7 @@ else:
                 My accuracies for the SGD trained on ID3 stumps from the 5-fold cross-validation were: 346/400, 346/400, 348/400, 340/400, 340/400, with an average of $p_a = 86.00\%$. This gives a 99\% confidence interval of [0.849,0.871]
       \end{enumerate}
 
-\item Evaluation
+\item Evaluation\\\\
       Overall, I was pretty underwhelmed by my results. The relative frequency of negative examples in the sample data was about 71\%, so even if I had some function, $f(x) = False$, it'd perform almost as well as my ``trained'' algorithms. However, to be fair, when I tested this ``zero function'' on the 5-fold cross-validation, it scored around 66\% with a pretty tight confidence interval. So the trained algorithms \textit{do} perform better (to a certain degree of confidence), it's just that they're not remarkably better.\\\\
       The order of accuracies, from least $p_a$ to greatest is:\\
       \begin{enumerate}
@@ -89,7 +89,21 @@ else:
       \end{enumerate}
 
       However, SGD, and ID3 depth 8 have overlapping confidence intervals, as do ID3 depth 8/SGD trained on ID3 and SGD trained on ID3/ID3 with unbounded depth, so we can't \textit{really} say that one is better than the other with confidence; it could've just been an ``unlucky'' sample from the population. However, we can say with confidence that ID3 with unbounded depth is better than the base SGD, which is better than ID3 depth 4, which is better than $f(x) = False$.\\
-      
+
+\item Implementation
+      \begin{enumerate}
+        \item[1.]
+                I wrote all of \#1 in Python (and then additionally wrote a testbench, BalloonTester.java that reads in balloons.train.arff, just to double check), which is in script1.py. I wrote a small Node class to be used for a binary tree, just so that the algorithm could be nice and elegant (recursive). I calculate the entropy as expected, and find the attribute (the right index of my list of instances), and then ``split.''
+
+                 I do this by stripping my data into two, one with only elements of one class of my split attribute, and the other with only elements of the other class of the split attribute. Thankfully, there were only 2 classes per feature, so I could just model it as a binary tree. Then I set the left Node of my current root Node to the algorithm passed in with the first list, and the right Node to the algorithm passed with my second list. My base cases are when I've stripped all the attributes, or when the calculated entropy is 0, so I can just set the outgoing Nodes to be True or False.
+\\\\
+                I used a nearly identical process with the second heuristic, only I changed the information gained logic inside the function.               
+        \item[2b.]
+                I implemented SGD in the given shell SGD.java, and evaluated it with SGDTester.java. This is the algorithm that took me the longest -- I found myself tweaking the parameters for a long time without any results. Most noticibly, the $\alpha$ value is incredibly sensitive. Anything too big (yet still less than 1), the algorithm doesn't converge, and I get -Infinities populated throughout my weight vector. Anything too small, and I consistently misclassify when it comes to evaluating the algorithm. But I made a few changes to the baseline algorithm that greatly improved my accuracy with SGD. First off, I ran it on the same dataset 100 times. This had a marginal improvement. But then, with each iteration, I shuffled the data. This seemed to have a really good effect, and I went from the ~70\% range, where the function $f(x)=False$ was, and I got into the range that I have now. For the final evaluation, I just picked an arbitrary seed value for my random number generator (used in the shuffle) so that I don't constantly get indeterministic results.
+       \item[3e.]
+                This program also took a lot of time, but not because I was tweaking it, but mostly dealing with Weka. But aside from the given parameters of the assignment, I experimented a bit with this algorithm, mostly because I was disappointed by the lack of marked improvement. I tried SGD on linear combinations of unbounded ID3 trees, since they were my most successful algorithm. The results were so incredible that I'm not sure if I messed up somewhere in the code. It gave me on the 5-fold cross-validation : 395/400, 397/400, 397/400, 394/400, 392/400, giving an overall $p_a = 98.75\%$. This has a confidence interval of [0.981,0.994]. I've included the outputted data on badges.train in 2.e.experiment.pred, if you'd like to evaluate it for legitimacy.
+                
+      \end{enumerate}
 \end{enumerate}
 
 \end{document}
