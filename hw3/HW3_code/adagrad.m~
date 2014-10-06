@@ -1,0 +1,13 @@
+function [w,theta] = adagrad(x,y,eta)
+    [m,n] = size(x);
+    w = [ones(1,n),-1*n];
+    G = zeros(m+1);
+    for j = 1:20
+       for i = 1:m
+         if (dot(w,x(i,:))+x()) * y(i) <= 0
+            g = [-y(i)*x(i), -y(i)];
+            G = G + g.^2;
+         end
+       end
+    end
+end

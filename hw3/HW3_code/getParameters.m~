@@ -1,0 +1,30 @@
+
+
+perceptron_params = [1.5,0.25,0.03,0.005,0.001];
+winnow_params = [1.1,1.01,1.005,1.0005,1.0001];
+winnow_margin_params1 = [1.1,1.01,1.005,1.0005,1.0001];
+winnow_margin_params2 = [2.0,0.3,0.04,0.006,0.001];
+adagrad_params = [1.5,0.25,0.03,0.005,0.001];
+
+[y1,x1] = gen(10,100,500,50000,0);
+[y2,x2] = gen(10,100,1000,50000,0);
+
+y1_train = y1(1:5000); y2_train = y2(1:5000);
+x1_train = x1(1:5000); x2_train = x2(1:5000);
+
+y1_test = y1(5001:10000); y2_test = y2(5001:10000);
+x1_test = x1(5001:10000); x2_test = x2(5001:10000);
+
+
+
+for eta = perceptron_params
+    [w,theta] = perceptron_margin(x1_train,y1_train,eta);
+    acc = accuracy(w,theta,x1_test,y1_test);
+    display(strcat('Perceptron_Margin : eta = ',num2str(eta),', acc = ',num2str(acc)));
+end
+
+for alpha = winnow_params
+    [w,theta] = perceptron_margin(x1_train,y1_train,alpha);
+    acc = accuracy(w,theta,x1_test,y1_test);
+    display(strcat('Perceptron_Margin : eta = ',num2str(eta),', acc = ',num2str(acc)));
+end
