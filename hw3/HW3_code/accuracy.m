@@ -10,6 +10,5 @@ end
 
 
 percent = numCorrect/numTotal;
-
 end
 
