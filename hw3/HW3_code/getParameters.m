@@ -17,34 +17,34 @@ x1_test = x1(5001:10000,:); x2_test = x2(5001:10000,:);
 
 
 
-% for eta = perceptron_params
-%     [w1,theta1] = perceptron_margin(x1_train,y1_train,eta);
-%     [w2,theta2] = perceptron_margin(x2_train,y2_train,eta);
-%     acc1 = accuracy(w1,theta1,x1_test,y1_test);
-%     acc2 = accuracy(w2,theta2,x2_test,y2_test);
-%     display(strcat('Perceptron_Margin1 : eta = ',num2str(eta),', acc = ',num2str(acc1)));
-%     display(strcat('Perceptron_Margin2 : eta = ',num2str(eta),', acc = ',num2str(acc2)))
-% end
-% 
-% for alpha = winnow_params
-%     [w1,theta1] = winnow(x1_train,y1_train,alpha);
-%     [w2,theta2] = winnow(x2_train,y2_train,alpha);    
-%     acc1 = accuracy(w1,theta1,x1_test,y1_test);
-%     acc2 = accuracy(w2,theta2,x2_test,y2_test);
-%     display(strcat('Winnow1 : alpha = ',num2str(alpha),', acc = ',num2str(acc1)));
-%     display(strcat('Winnow2 : alpha = ',num2str(alpha),', acc = ',num2str(acc2)));
-% end
-% 
-% for alpha = winnow_margin_params1
-%     for gamma = winnow_margin_params2
-%         [w1,theta1] = winnow_margin(x1_train,y1_train,alpha,gamma);
-%         [w2,theta2] = winnow_margin(x2_train,y2_train,alpha,gamma);
-%         acc1 = accuracy(w1,theta1,x1_test,y1_test);
-%         acc2 = accuracy(w2,theta2,x2_test,y2_test);
-%         display(strcat('Winnow_Margin1 : alpha = ',num2str(alpha),', gamma =',num2str(gamma),', acc = ',num2str(acc1)));
-%         display(strcat('Winnow_Margin2 : alpha = ',num2str(alpha),', gamma =',num2str(gamma),', acc = ',num2str(acc2)));
-%     end
-% end
+for eta = perceptron_params
+    [w1,theta1] = perceptron_margin(x1_train,y1_train,eta);
+    [w2,theta2] = perceptron_margin(x2_train,y2_train,eta);
+    acc1 = accuracy(w1,theta1,x1_test,y1_test);
+    acc2 = accuracy(w2,theta2,x2_test,y2_test);
+    display(strcat('Perceptron_Margin1 : eta = ',num2str(eta),', acc = ',num2str(acc1)));
+    display(strcat('Perceptron_Margin2 : eta = ',num2str(eta),', acc = ',num2str(acc2)))
+end
+
+for alpha = winnow_params
+    [w1,theta1] = winnow(x1_train,y1_train,alpha);
+    [w2,theta2] = winnow(x2_train,y2_train,alpha);    
+    acc1 = accuracy(w1,theta1,x1_test,y1_test);
+    acc2 = accuracy(w2,theta2,x2_test,y2_test);
+    display(strcat('Winnow1 : alpha = ',num2str(alpha),', acc = ',num2str(acc1)));
+    display(strcat('Winnow2 : alpha = ',num2str(alpha),', acc = ',num2str(acc2)));
+end
+
+for alpha = winnow_margin_params1
+    for gamma = winnow_margin_params2
+        [w1,theta1] = winnow_margin(x1_train,y1_train,alpha,gamma);
+        [w2,theta2] = winnow_margin(x2_train,y2_train,alpha,gamma);
+        acc1 = accuracy(w1,theta1,x1_test,y1_test);
+        acc2 = accuracy(w2,theta2,x2_test,y2_test);
+        display(strcat('Winnow_Margin1 : alpha = ',num2str(alpha),', gamma =',num2str(gamma),', acc = ',num2str(acc1)));
+        display(strcat('Winnow_Margin2 : alpha = ',num2str(alpha),', gamma =',num2str(gamma),', acc = ',num2str(acc2)));
+    end
+end
 
 for eta = adagrad_params
     [w1,theta1] = adagrad(x1_train,y1_train,eta);
