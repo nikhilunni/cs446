@@ -1,6 +1,8 @@
 numN = 50000;
 skip = 100;
 N = skip:skip:numN;
+
+
 numElements = size(N);
 numElements = numElements(2); %I hate Matlab...
 w_perceptron_margin1 = zeros(1,numElements);
@@ -15,6 +17,7 @@ w_winnow_margin2 = zeros(1,numElements);
 w_adagrad1 = zeros(1,numElements);
 w_adagrad2 = zeros(1,numElements);
 for i = N
+    display(i);
     [y1,x1] = gen(10,100,500,i,0);
     [y2,x2] = gen(10,100,1000,i,0);
     w_perceptron_margin1(i/skip) = perceptron_margin_error(x1,y1,0.005);
