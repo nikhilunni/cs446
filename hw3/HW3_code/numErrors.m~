@@ -45,19 +45,10 @@ end
 figure
 hold on
 title('n = 500')
+title()
 xlabel('N')
 ylabel('Mistakes')
-plot(N,w_perceptron1,N,w_perceptron_margin1,N,w_winnow1,N,w_winnow_margin1,N,w_adagrad1);
-legend('Perceptron','Peceptron with Margin','Winnow','Winnow with Margin','Adagrad');
-legend('Location','NorthWest');
-hold off
-
-figure
-hold on
-title('n = 1000')
-xlabel('N')
-ylabel('Mistakes')
-plot(N,w_perceptron2,N,w_perceptron_margin2,N,w_winnow2,N,w_winnow_margin2,N,w_adagrad2);
+plot(N,w_perceptron1,N,w_perceptron_margin1,N,w_winno1,N,);
 legend('Perceptron','Peceptron with Margin','Winnow','Winnow with Margin','Adagrad');
 legend('Location','NorthWest');
 hold off
