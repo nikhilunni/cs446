@@ -1,4 +1,2 @@
-pdflatex hw1.tex
-ps aux | grep "Adobe" | xargs kill -9
-sleep -s 2
-gnome-open hw1.pdf
+pdflatex hw3.tex
+open hw3.pdf
