@@ -1,0 +1,47 @@
+\input{../cs446.tex}
+
+\oddsidemargin 0in
+\evensidemargin 0in
+\textwidth 6.5in
+\topmargin -0.5in
+\textheight 9.0in
+
+\begin{document}
+
+\solution{My name}{Hand in date}{Problem set number}{Fall 2014}
+% Fill in the above, for example, as follows:
+% \solution{Joe Smith}{\today}{1}{Fall 2012}
+
+\pagestyle{myheadings}  % Leave this command alone
+
+\begin{enumerate}
+\item SVM
+  \begin{enumerate}
+  \item [(a)]
+    \begin{enumerate}  
+    \item [1.]
+      $\textbf{w} = [-1,0]^T$\\
+      $\theta = 0$
+    \item [2.]
+      $\textbf{w} = [-0.5,0.25]^T$\\
+      $\theta = 0$
+    \item [3.]
+      I found the two closest positive/negative points, $[(-1.2,1.6), +], [(2,0), -]$, and found the slope between them, $\frac{1.6}{-3.2} = -\frac{1}{2}$, and the midpoint, $(0.4, 0.8)$, so the line with the farthest distance between the two points (the support vectors), has a slope of $2$ with a point $(0.4, 0.8)$, giving the line $y=2x$, which gives $w=[-2,1]^T, \theta=0$.\\\\
+      Then, I just minimized $w$ by halving it repeatedly, until I got $w=[-0.5,0.25]$. This $w$ gave $y(w^Tx+\theta)=1$ for both support vectors, so I know this is the smallest value of $w$ I can get.      
+    \end{enumerate}
+  \item [(b)]
+    \begin{enumerate}
+    \item [1.]
+      $I = \left\{1,6\right\}$
+    \item [2.]
+      $\alpha = \left\{\frac{5}{32},\frac{5}{32}\right\}$
+    \item [3.]
+      Objective function value = $\frac{5}{32}$.
+    \end{enumerate}
+  \end{enumerate}
+\item Answer to problem 2
+\item Answer to problem 3
+\end{enumerate}
+
+\end{document}
+
