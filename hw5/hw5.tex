@@ -1,5 +1,6 @@
 \input{../cs446.tex}
-
+\usepackage{amssymb,amsmath}
+\usepackage[]{units}
 \oddsidemargin 0in
 \evensidemargin 0in
 \textwidth 6.5in
@@ -8,9 +9,8 @@
 
 \begin{document}
 
-\solution{My name}{Hand in date}{Problem set number}{Fall 2014}
-% Fill in the above, for example, as follows:
-% \solution{Joe Smith}{\today}{1}{Fall 2012}
+\solution{Nikhil Unni}{\today}{5}{Fall 2014}
+
 
 \pagestyle{myheadings}  % Leave this command alone
 
@@ -39,18 +39,142 @@
       Objective function value = $\frac{5}{32}$.
     \end{enumerate}
   \item [(c)]
-    FINISH ME LATER. $C$ represents how much the SVM should avoid misclassifications. In general, $C$ controls the relative importance of maximizing the margin. For $C=\infty$, we obtain our original hyperplane that we found in (a)-2. For $C=1$, we get a larger margin, with a higher chance of misclassification. The support vectors for $C=1$ can now be inside the margins. For $C=0$ has an even wider margin, with even larger misclassification. (FINISH ME LATER)
+    $C$ represents how much the SVM should avoid misclassifications. In general, $C$ controls the relative importance of maximizing the margin. For $C=\infty$, we obtain our original hyperplane that we found in (a)-2. For $C=1$, we get a larger margin, with a higher chance of misclassification. The support vectors for $C=1$ can now be inside the margins. For $C=0$ has an even wider margin, with even larger misclassification.
   \end{enumerate}
 \item Kernels
   \begin{enumerate}
     \item[(a)]
       \begin{algorithm}
-        1. Initialize $\alpha$ to $\vec{0}$ of length $n$, where $n$ is the number of examples.
-        2. Initialize $\theta$ to $0$.
-        3. 
+        1. Initialize $\alpha$ to $\vec{0}$ of length $n$, where $n$ is the number of examples.\\
+        2. Initialize $\theta$ to $0$.\\
+        3. While still making mistakes (terminate after long string of successes):\\
+        4. \>\>For each training example $(x,y)$:\\
+        5. \>\>\>if $y[(\sum\limits_{i=1}^n\alpha_i y_i \langle x_i, x \rangle) + \theta] < 0$: ($\langle a,b \rangle$ representing the inner product)\\
+        6. \>\>\>\>$\alpha_i \leftarrow \alpha_i + 1$ (where i is the index of the current example $(x,y)$)\\
+        7. \>\>\>\>$\theta \leftarrow \theta + y$\\
       \end{algorithm}
+    \item[(b)]
+      $$K(x,z) = \alpha K_1(x,z) + \beta K_2(x,z)$$
+      Since $K_1$ and $K_2$ are both valid kernel functions, they can be represented as the dot product of two feature maps, $\phi_1$ and $\phi_2$ such that
+      $$K(x,z) = \alpha \langle \phi_1(x), \phi_1(z) \rangle + \beta \langle \phi_2(x), \phi_2(z) \rangle$$
+      And also such that
+      $$\phi_1(x) = [\phi_1(x)_1, \phi_1(x)_2, \ldots, \phi_1(x)_M]$$
+      $$\phi_2(x) = [\phi_2(x)_1, \phi_2(x)_2, \ldots, \phi_2(x)_N]$$
+      Where $M$ and $N$ the size of the vectors $\phi_1(x)$ and $\phi_2(x)$ respectively.
+      Then, we can represent $K(x,z)$ by using the definition of $\phi_1$ and $\phi_2$ and expand out the inner products
+      $$K(x,z) = \alpha \sum\limits_{i=1}^M \phi_1(x)_i \phi_1(z)_i + \beta \sum\limits_{j=1}^N \phi_2(x)_j \phi_2(z)_j$$
+      Then we put $\alpha$ and $\beta$ inside the summations as follows
+      $$K(x,z) = \sum\limits_{i=1}^M (\sqrt\alpha \phi_1(x)_i) (\sqrt\alpha \phi_1(z)_i) + \sum\limits_{j=1}^N (\sqrt\beta \phi_2(x)_j) (\sqrt\beta \phi_2(z)_j)$$
+      Suppose we had a feature map like :
+      $$\phi(x) = [\sqrt\alpha \phi_1(x)_1, \sqrt\alpha \phi_1(x)_2, \ldots, \sqrt\alpha \phi_1(x)_M, \sqrt\beta \phi_2(x)_1, \ldots, \sqrt\beta \phi_2(x)_N]$$
+      of dimension $N+M$.\\
+      Then, $\langle \phi(x), \phi(z) \rangle = \alpha \phi_1(x)_1 \phi_1(z)_1 + \alpha \phi_1(x)_2 \phi_1(z)_2 + \ldots \alpha \phi_1(x)_M \phi_1(z)_M + \beta \phi_2(x)_1 \phi_2(z)_1 + \ldots + \beta \phi_2(x)_N \phi_2(z)_N$\\
+      Or 
+      $$\langle \phi(x), \phi(z) \rangle = \sum\limits_{i=1}^M (\sqrt\alpha \phi_1(x)_i) (\sqrt\alpha \phi_1(z)_i) + \sum\limits_{j=1}^N (\sqrt\beta \phi_2(x)_j) (\sqrt\beta \phi_2(z)_j)$$
+      $$\langle \phi(x), \phi(z) \rangle = K(x,z)$$
+      Because $K(x,z)$ is an inner product of our new feature map, it is a valid kernel for all valid kernels $K_1$ and $K_2$ and all positive $\alpha$ and $\beta$.\\
+    \item[(c)]
+      Before proving that $K(x,z)$ is a valid kernel, I'll prove one more property of kernels.\\
+      \textbf{Note}: I'm going to reuse $K$, $x$ and $z$ for this proof, they're not necessarily the same $K$, $x$ and $z$ we were given in the problem, sorry for the slight abuse of notation!\\
+      \begin{enumerate}
+        \item[1.] $K(x,z) = K_1(x,z)K_2(x,z)$, for all valid kernels $K_1$ and $K_2$\\
+          $$K(x,z) = (\langle \phi_1(x), \phi_1(z) \rangle) * (\langle \phi_2(x), \phi_2(z))$$
+          $$K(x,z) = (\sum\limits_{i=1}^M \phi_1(x)_i \phi_1(z)_i)(\sum\limits_{j=1}^N \phi_2(x)_j \phi_2(z)_j)$$
+          $$K(x,z) = \sum\limits_{i=1}^M \sum\limits_{j=1}^N \phi_1(x)_i \phi_1(z)_i \phi_2(x)_j \phi_2(z)_j$$
+          Let $\phi(x)_{ij} = \phi_1(x)_i * \phi_2(x)_j$ and $\phi(z)_{ij} = \phi_1(z)_i * \phi_2(z)_j$. Then:
+          $$K(x,z) = \sum\limits_{i=1}^M \sum\limits_{j=1}^N \phi(x)_{ij} \phi(z)_{ij}$$
+          $$K(x,z) = \langle \phi(x), \phi(z) \rangle$$
+          Where the dimension of $\phi$ is $M*N$.\\
+          Because $K$ is the inner product of the feature map of $x$ and $z$, it's a valid kernel.
+      \end{enumerate}
+      Now that we have that, we can continue with the original proof.\\\\
+      First of all, $K_1(x,z) = x^Tz$ is clearly a valid kernel, where the feature map $\phi_1(x)$ is just the identity feature map, so that $K_1 = \langle \phi_1(x), \phi_1(z) \rangle$.\\\\
+      Next, because of my proof right above, $(x^Tz)(x^Tz) = (x^Tz)^2$ is a valid kernel too, since it's just the product of two valid kernels. By the same logic, $(x^Tz)(x^Tz)^2 = (x^Tz)^3$ is also a valid kernel.\\\\
+      Then, by the proof from part (b), we know that the linear combination (with positive coefficients) of valid kernels is a valid kernel as well.\\
+      So $1(x^Tz)^3 + 400(x^Tz)^2$ is valid, and then $1(x^Tz)^3 + 400(x^Tz)^2 + 100x^Tz$ is a valid kernel as well. $\blacksquare$
+      
   \end{enumerate}
-\item Answer to problem 3
+\item Boosting
+
+        \begin{table}[!t]
+      {\centering
+        \begin{tabular}{|c|c||c|c|c|c||c|c|c|c|}
+
+          \hline
+          & & \multicolumn{4}{c||}{Hypothesis 1}
+	  & \multicolumn{4}{c|}{Hypothesis 2} \\
+          \cline{3-10}
+          {\em i} & Label & $D_0$ & $x_1 \equiv $ & $x_2 \equiv $ & $h_1\equiv$ & $D_1$ &  $x_1 \equiv $ & $x_2 \equiv $ & $h_2 \equiv $ \\
+          & & & [$x >5$] & [$y > 6$] & [$x_1$] & & [$x > 3$] & [$y > 8$] & [$x_2$] \\
+
+          \tiny{(1)} & \tiny{(2)} & \tiny{(3)} & \tiny{(4)} &  \tiny{(5)} & \tiny{(6)} & \tiny{(7)} & \tiny{(8)} & \tiny{(9)} & \tiny{(10)}\\
+          \hline \hline
+          {\em 1} & $-$ &$\nicefrac{1}{10}$ &$-$ &$+$ &$-$ &$\nicefrac{1}{16}$ &$-$ &$+$ &$+$  \\
+          \hline                                                                             
+          {\em 2} & $-$ &$\nicefrac{1}{10}$ &$-$ &$-$ &$-$ &$\nicefrac{1}{16}$ &$+$ &$-$ &$-$  \\
+          \hline                                                                             
+          {\em 3} & $+$ &$\nicefrac{1}{10}$ &$+$ &$+$ &$+$ &$\nicefrac{1}{16}$ &$+$ &$-$ &$-$ \\
+          \hline                                                                             
+          {\em 4} & $-$ &$\nicefrac{1}{10}$ &$-$ &$-$ &$-$ &$\nicefrac{1}{16}$ &$+$ &$-$ &$-$ \\
+          \hline                                                                             
+          {\em 5} & $-$ &$\nicefrac{1}{10}$ &$-$ &$+$ &$-$ &$\nicefrac{1}{16}$ &$-$ &$+$ &$+$ \\
+          \hline                                                                             
+          {\em 6} & $+$ &$\nicefrac{1}{10}$ &$+$ &$+$ &$+$ &$\nicefrac{1}{16}$ &$+$ &$-$ &$-$ \\
+          \hline                                                                             
+          {\em 7} & $+$ &$\nicefrac{1}{10}$ &$+$ &$+$ &$+$ &$\nicefrac{1}{16}$ &$+$ &$+$ &$+$ \\
+          \hline                                                                             
+          {\em 8} & $-$ &$\nicefrac{1}{10}$ &$-$ &$-$ &$-$ &$\nicefrac{1}{16}$ &$+$ &$-$ &$-$ \\
+          \hline                                      
+          {\em 9} & $+$ &$\nicefrac{1}{10}$ &$-$ &$+$ &$-$ &$\nicefrac{1}{4}$ &$+$ &$+$ &$+$ \\
+          \hline
+          {\em 10} & $-$ &$\nicefrac{1}{10}$ &$+$ &$+$ &$+$ &$\nicefrac{1}{4}$ &$+$ &$-$ &$-$ \\
+          \hline
+        \end{tabular}
+        \caption{Table for Boosting results} \label{table:ltu}}
+    \end{table}      
+  \begin{enumerate}
+    \item[(c)]
+      For $t=0$ mistakes were made on the $9^{th}$ and $10^{th}$ examples, giving $\epsilon_0 = 0.2$.\\
+      Next, $\alpha_0 = \frac{1}{2}log_2(\frac{1-\epsilon_0}{\epsilon_0}) = \frac{1}{2}log_2(4) = 1$\\
+      $$D_1 = \frac{D_0(i)}{z_t} * 2^{-\alpha_0} \text{ if } y_i = h_0(x_i)$$
+      $$D_1 = \frac{D_0(i)}{z_t} * 2^{\alpha_0} \text{ if } y_i \neq h_0(x_i)$$
+      So then, for the first 8 examples, $D_1 = \frac{\frac{1}{10}}{z_t} * 2^{-1}$, and for the last 2, $D_1 = \frac{\frac{1}{10}}{z_t} * 2^{1}$\\
+      This means $\frac{8}{20z_t} + \frac{2}{5z_t} = 1$, making $z_t = \frac{4}{5}$.\\
+      All together, for the first 8 examples, $D_1 = \frac{1}{16}$, and for the last two, $D_1 = \frac{1}{4}$.
+    \item[(d)]
+      Mistakes were made on examples 1, 3, 5, and 6, giving $\epsilon_1 = \frac{4}{16} = \frac{1}{4}$.\\
+      So then $\alpha_1 = \frac{1}{2}log_2(\frac{1-0.25}{0.25}) \approx 0.79248$.\\
+      This makes the final $H(x) = sgn[1(x>5) + 0.79248(y>8)]$.
+    \item[(e)]
+      The $\epsilon_0$ be the original error over the distribution $D_t$. It's just the sum of all $D_t(i)$ over all indeces where there was a misclassification.
+      $$\epsilon_0 = \sum\limits_{i\in I} D_t(i) \text{, where I is the set of all indices where there was a misclassification.}$$
+      Then, let $\epsilon_1$ be the new error of the previous hypothesis at time $t$ over the new distribution $D_{t+1}$. Because we have the same hypothesis, we'll be iterating over the same indices as before. So:
+      $$\epsilon_1 = \sum\limits_{i\in I} D_{t+1}(i)$$
+      Going by the update formula, keeping in mind these examples are all misclassifications, such that the signs are all the same:
+      $$\epsilon_1 = \sum\limits_{i\in I} \frac{D_t(i)}{z_t} * e^{\frac{1}{2}ln(\frac{1-\epsilon_0}{\epsilon_0})}$$
+      $$\epsilon_1 = \sum\limits_{i\in I} \frac{D_t(i)}{z_t}(\frac{1-\epsilon_0}{\epsilon_0})^{\frac{1}{2}}$$
+      $$\epsilon_1 = \frac{\sum\limits_{i\in I} D_t(i)}{z_t}(\frac{1-\epsilon_0}{\epsilon_0})^{\frac{1}{2}}$$
+      $$\epsilon_1 = \frac{\epsilon_0}{z_t}(\frac{1-\epsilon_0}{\epsilon_0})^{\frac{1}{2}}$$
+      $$\epsilon_1 = \frac{\epsilon_0}{2[\epsilon_0(1-\epsilon_0)]^{\frac{1}{2}}}(\frac{1-\epsilon_0}{\epsilon_0})^{\frac{1}{2}}$$
+      $$\epsilon_1 = \frac{\epsilon_0}{2 * \sqrt(\epsilon_0)\sqrt(\epsilon_0)}$$
+      $$\epsilon_1 = \frac{1}{2} \blacksquare$$
+      
+  \end{enumerate}
+  \item Probability
+    \begin{enumerate}
+      \item[(a)]
+        \begin{enumerate}
+          \item[i.]
+            The expected number of children per family in town A is just $1$ since they always stop having children after having their first one.\\
+            In town B, the $P(X=1)$ is the probability of having a boy on the first go, which is $0.5$, and $P(X=2)$ is the probability that they had a girl first, then a boy, which is $0.5*0.5$. In general, $P(X=n) = 0.5^n$. So $E[X] = \sum\limits_{i=1}^\infty i * 0.5^i = 2$. So the expected number of children per family in town B is $2$.
+          \item[ii.]
+            Let $X$ be the random variable denoting number of boys, and $Y$ denoting number of girls.\\
+            The expected number of boys per family in town A is just $0.5$, and the expected number of girls is $0.5$ as well. This is because they only have 1 child, and it's an even shot at which gender it becomes. $P(X=1)=0.5$, $P(X=0)=0.5$, and likewise $P(Y=1)=0.5$, so the expected value for boys and girls are both $1*0.5=0.5$.\\\\
+            In town B, $P(X=1)=1$, since they refuse to stop having children until a son comes. But since they stop right after, $P(X>1)=0$. This means $E[X] = 1$. For girls, $P(Y=1)=0.5*0.5$ since it means the first birth was a girl, and was immediately followed by a boy. Continuing, $P(Y=2) = 0.5^3$, and so on.\\
+            So $E[Y] = 1*0.5^2 + 2*0.5^3 + \ldots = \sum\limits_{i=1}^\infty i*0.5^{i+1} = 1$.\\\\
+            Putting it all together, the ratio in town A is $\frac{0.5}{0.5}=\textbf{1}$, and the ratio in town B is $\frac{1}{1} = \textbf{1}$, maintaining the existing ratio in both towns.
+        \end{enumerate}
+    \end{enumerate}
 \end{enumerate}
 
 \end{document}
